@@ -1,11 +1,11 @@
 '''
 Capture multiple Faces from multiple users to be stored on a DataBase (dataset directory)
 	==> Faces will be stored on a directory: dataset/ (if does not exist, pls create one)
-	==> Each face will have a unique numeric integer ID as 1, 2, 3, etc                       
+	==> Each face will have a unique numeric integer ID as 1, 2, 3, etc
 
-Based on original code by Anirban Kar: https://github.com/thecodacus/Face-Recognition    
+Based on original code by Anirban Kar: https://github.com/thecodacus/Face-Recognition
 
-Developed by Marcelo Rovai - MJRoBot.org @ 21Feb18    
+Developed by Marcelo Rovai - MJRoBot.org @ 21Feb18
 
 '''
 
@@ -69,7 +69,7 @@ while(True):
         count += 1
 
         # Save the captured image into the datasets folder
-        cv2.imwrite("dataset/User." + str(face_id) + '.' + str(count) + ".jpg", gray[y:y+h, x:x+w])
+        cv2.imwrite("dataset/User." + str(face_id) + '.' + str(count) + ".jpg", cv2.resize(gray[y:y+h, x:x+w], (250, 250)))
 
         cv2.imshow('image', img)
 
@@ -101,7 +101,7 @@ while(True):
         count += 1
 
         # Save the captured image into the datasets folder
-        cv2.imwrite("dataset/User." + str(face_id) + '.' + str(count) + ".jpg", gray[y:y+h, x:x+w])
+        cv2.imwrite("dataset/User." + str(face_id) + '.' + str(count) + ".jpg", cv2.resize(gray[y:y+h, x:x+w], (250, 250)))
 
         cv2.imshow('image', img)
 
