@@ -18,7 +18,7 @@ import os
 # Path for face image database
 path = 'dataset'
 
-recognizer = cv2.face.LBPHFaceRecognizer_create()
+recognizer = cv2.face.FisherFaceRecognizer_create()
 detector = cv2.CascadeClassifier("haarcascade_frontalface_default.xml");
 
 # function to get the images and label data
