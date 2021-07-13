@@ -1,9 +1,19 @@
 # import module from tkinter for UI
 from tkinter import *
+from tkinter import messagebox
 import os
 from datetime import datetime
 import json
 from datetime import date
+
+
+def hellocallback():
+    s1 = e1.get()
+    s2 = e2.get()
+    if s1 == 'Real' and s2 == 'Hunter':
+        
+    else:
+        messagebox.showerror('Error', 'Invalid Login')
 
 # creating instance of TK
 root = Tk()
@@ -37,13 +47,17 @@ def function1():
 
 def takephoto():
     userid = e1.get().strip()
+    role = 1
+    if userid.isnumeric():
+        role = 0
     print(len(users))
     x = users.get(userid, len(users))
     users[userid] = {'id': x['id'],
-                     'name': e2.get()}
+                     'name': e2.get(),
+                     'role': role}
     print(x, users, sep='\n')
     f.destroy()
-    os.system("py 01_face_dataset.py " + str(users[userid]['id']))
+    os.system("py training.py " + str(x['id']))
     with open('user.json', 'w', encoding='utf-8') as jsonf:
         jsonf.write(json.dumps(users, indent=4))
 
