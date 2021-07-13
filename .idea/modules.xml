@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Attendance-System.iml" filepath="$PROJECT_DIR$/.idea/Attendance-System.iml" />
-      <module fileurl="file://$USER_HOME$/PycharmProjects/pythonProject1/.idea/pythonProject1.iml" filepath="$USER_HOME$/PycharmProjects/pythonProject1/.idea/pythonProject1.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../sdkadoajsd/.idea/sdkadoajsd.iml" filepath="$PROJECT_DIR$/../sdkadoajsd/.idea/sdkadoajsd.iml" />
     </modules>
   </component>
 </project>
