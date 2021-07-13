@@ -8,10 +8,8 @@ from datetime import date
 
 
 def hellocallback():
-    s1 = e1.get()
-    s2 = e2.get()
-    if s1 == 'Real' and s2 == 'Hunter':
-        
+    if e3.get() == 'pass':
+        takephoto()
     else:
         messagebox.showerror('Error', 'Invalid Login')
 
@@ -23,24 +21,28 @@ p = open('user.json', 'rb')
 users = json.load(p)
 
 def function1():
-    global f, e1, e2
+    global f, e1, e2, e3
     f = Tk()
 
     l1 = Label(f, text='Employee Code / Roll No : ', width=23, height=2)
-
     e1 = Entry(f, width=40)
 
     l2 = Label(f, text='Name : ', width=23, height=2)
     e2 = Entry(f, width=40)
 
-    b = Button(f, text='Submit', width=15, height=2, command=takephoto, bg='blue', fg='white',
+    l3 = Label(f, text='Password : ', width=23, height=2)
+    e3 = Entry(f, width=40, show='*')
+
+    b = Button(f, text='Submit', width=15, height=2, command=hellocallback, bg='blue', fg='white',
                activebackground='green', activeforeground='red')
 
     l1.grid(row=0, column=0)
     e1.grid(row=0, column=1)
     l2.grid(row=1, column=0)
     e2.grid(row=1, column=1)
-    b.grid(row=2, column=0)
+    l3.grid(row=2, column=0)
+    e3.grid(row=2, column=1)
+    b.grid(row=3, column=0)
 
     f.mainloop()
 
