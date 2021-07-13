@@ -1,12 +1,17 @@
 {
     "19102A0050": {
         "id": 0,
-        "name": "Samant Nimish Girish",
+        "name": "Nimish Girish Samant",
         "role": 1
     },
     "20102B2002": {
         "id": 1,
         "name": "Bhumi Sharad Avhad",
+        "role": 1
+    },
+    "19102A0033": {
+        "id": 2,
+        "name": "Heramba Prasanna Limaye",
         "role": 1
     }
 }
