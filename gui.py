@@ -2,11 +2,15 @@
 from tkinter import *
 import os
 from datetime import datetime
+import json
+from datetime import date
 
 # creating instance of TK
 root = Tk()
 root.configure(background="white")
 
+p = open('user.json', 'rb')
+users = json.load(p)
 
 def function1():
     global f, e1, e2
@@ -32,9 +36,16 @@ def function1():
 
 
 def takephoto():
-    userid = e1.get()
+    userid = e1.get().strip()
+    print(len(users))
+    x = users.get(userid, len(users))
+    users[userid] = {'id': x['id'],
+                     'name': e2.get()}
+    print(x, users, sep='\n')
     f.destroy()
-    os.system("py 01_face_dataset.py " + userid)
+    os.system("py 01_face_dataset.py " + str(users[userid]['id']))
+    with open('user.json', 'w', encoding='utf-8') as jsonf:
+        jsonf.write(json.dumps(users, indent=4))
 
 def function2():
     os.system("py training_dataset.py")
