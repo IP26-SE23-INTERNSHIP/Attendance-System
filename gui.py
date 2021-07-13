@@ -47,16 +47,9 @@ def takephoto():
     with open('user.json', 'w', encoding='utf-8') as jsonf:
         jsonf.write(json.dumps(users, indent=4))
 
-def function2():
-    os.system("py training_dataset.py")
-
 
 def function3():
     os.system("py recognizer.py")
-
-
-def function5():
-    os.startfile(os.getcwd() + "/developers/diet1frame1first.html");
 
 
 def function6():
@@ -64,7 +57,7 @@ def function6():
 
 
 def attend():
-    os.startfile(os.getcwd() + "/firebase/attendance_files/attendance" + str(datetime.now().date()) + '.xls')
+    os.startfile(os.getcwd() + "attendance.html")
 
 
 # stting title for the window
@@ -78,23 +71,13 @@ Label(root, text="FACE RECOGNITION ATTENDANCE SYSTEM", font=("times new roman", 
 Button(root, text="Create Dataset", font=("times new roman", 20), bg="#0D47A1", fg='white', command=function1).grid(
     row=3, columnspan=2, sticky=W + E + N + S, padx=5, pady=5)
 
-# creating second button
-Button(root, text="Train Dataset", font=("times new roman", 20), bg="#0D47A1", fg='white', command=function2).grid(
-    row=4, columnspan=2, sticky=N + E + W + S, padx=5, pady=5)
-
 # creating third button
 Button(root, text="Recognize + Attendance", font=('times new roman', 20), bg="#0D47A1", fg="white",
        command=function3).grid(row=5, columnspan=2, sticky=N + E + W + S, padx=5, pady=5)
 
 # creating attendance button
-Button(root, text="Attendance Sheet", font=('times new roman', 20), bg="#0D47A1", fg="white", command=attend).grid(
+Button(root, text="Attendance Download Website", font=('times new roman', 20), bg="#0D47A1", fg="white", command=attend).grid(
     row=6, columnspan=2, sticky=N + E + W + S, padx=5, pady=5)
-
-Button(root, text="Developers", font=('times new roman', 20), bg="#0D47A1", fg="white", command=function5).grid(row=8,
-                                                                                                                columnspan=2,
-                                                                                                                sticky=N + E + W + S,
-                                                                                                                padx=5,
-                                                                                                                pady=5)
 
 Button(root, text="Exit", font=('times new roman', 20), bg="maroon", fg="white", command=function6).grid(row=9,
                                                                                                          columnspan=2,
