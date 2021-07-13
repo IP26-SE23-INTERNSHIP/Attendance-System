@@ -53,9 +53,9 @@ def takephoto():
     if userid.isnumeric():
         role = 0
     print(len(users))
-    x = users.get(userid, len(users))
-    users[userid] = {'id': x['id'],
-                     'name': e2.get(),
+    x = users.get(userid, {'id': len(users)})
+    users[userid] = {'id': x['id'], \
+                     'name': e2.get(), \
                      'role': role}
     print(x, users, sep='\n')
     f.destroy()
