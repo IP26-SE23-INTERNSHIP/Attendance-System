@@ -35,7 +35,7 @@ def getImagesAndLabels(path):
         id = int(os.path.split(imagePath)[-1].split(".")[1])
         faces = detector.detectMultiScale(img_numpy)
 
-        for (x,y,w,h) in faces:
+        for (x, y, w, h) in faces:
             faceSamples.append(cv2.resize(img_numpy[y:y+h,x:x+w],(250,250)))
             ids.append(id)
 
