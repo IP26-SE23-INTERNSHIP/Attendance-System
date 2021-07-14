@@ -1,0 +1,127 @@
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+<style>
+[type="date"] {
+background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png) 97% 50% no-repeat ;
+}
+[type="date"]::-webkit-inner-spin-button {
+display: none;
+}
+[type="date"]::-webkit-calendar-picker-indicator {
+opacity: 0;
+}
+
+
+
+/* custom styles */
+body {
+padding: 4em;
+background-image: url("https://ixtenso.com/media/story_section_image/6891/image-01-panthermedia-b185889616-1748x1165.jpg");
+font: 13px/1.4 Geneva, 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+}
+label {
+display: block;
+}
+input {
+border: 1px solid #c4c4c4;
+border-radius: 5px;
+background-color: #fff;
+padding: 3px 5px;
+box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
+width: 190px;
+}</style>
+<h1 style="color:white;">Attendance</h1>
+<label for="dateofbirth" style="color:white;">Select Date</label>
+<input type="date" name="dateofbirth" id="dateofbirth">
+<button type="button" class="btn btn-outline-light" onclick="dob()">Submit</button>
+<button type="button" class="btn btn-outline-light">Download</button>
+
+
+
+<div id="attendancetable">
+<!--table class="table table-dark" style="margin-top:40px;">
+<thead>
+<tr>
+
+<th scope="col">Roll No</th>
+<th scope="col">Name</th>
+<th scope="col">Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nimish</td>
+<td>19102A0050</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Nimish</td>
+<td></td>
+<td>0</td>
+</tr>
+
+</tbody>
+</table-->
+</div>
+<script>
+    function dob() {
+        var fname = document.getElementById('dateofbirth').value;
+        var path = '.\\attendance\\'+fname+'.json';
+
+        if (fname != "") {
+            fetch(path)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    var tabs = "";
+                    for( var key in data ) {
+                        tabs += '<tr>' +
+                            '<td>'+key+'</td>' +
+                            '<td>'+data[key].name+'</td>' +
+                            '<td>'+data[key].time+'</td>' +
+                            '</tr>'
+                    }
+                    document.getElementById("attendancetable").innerHTML = '<table class="table table-dark" style="margin-top:40px;">'+
+                            '<thead>' +
+                            '<tr>' +
+                            '<th scope="col">Roll No</th>' +
+                            '<th scope="col">Name</th>' +
+                            '<th scope="col">Time</th>' +
+                            '</tr>' +
+                            '</thead>' +
+                            '<tbody>' +
+                             tabs
+                            '</tbody>' +
+                            '</table>';
+                })
+                .catch(e => {
+                    console.log("Attendance not available for "+fname);
+                    document.getElementById("attendancetable").innerHTML = '<table class="table table-dark" style="margin-top:40px;">'+
+                            '<thead>' +
+                            '<tr>' +
+                            '<th scope="col">Attendance not available for '+fname+'</th>' +
+                            '</tr>' +
+                            '</thead>' +
+                            '</table>';
+                })
+        }
+        else {
+            console.log("Please select a date");
+            document.getElementById("attendancetable").innerHTML = '<table class="table table-dark" style="margin-top:40px;">'+
+                            '<thead>' +
+                            '<tr>' +
+                            '<th scope="col">Please select a Date</th>' +
+                            '</tr>' +
+                            '</thead>' +
+                            '</table>';
+        }
+    }
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
