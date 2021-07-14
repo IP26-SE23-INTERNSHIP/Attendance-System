@@ -8,24 +8,23 @@ from datetime import date
 import webbrowser
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import subprocess
+import threading
+import signal
+
+global p
 
 
-# class Serv(BaseHTTPRequestHandler):
-#     def do_GET(self):
-#         if self.path == '/':
-#             self.path = '/attendance.html'
-#         try:
-#             file_to_open = open(self.path[1:]).read()
-#             self.send_response(200)
-#         except:
-#             file_to_open = "File not found"
-#             self.send_response(404)
-#         self.end_headers()
-#         self.wfile.write(bytes(file_to_open, 'utf-8'))
-#
-#
-# httpd = HTTPServer(('localhost', 7800), Serv)
-# httpd.serve_forever()
+def serve():
+    global p
+    p = subprocess.Popen('start /wait python -m http.server 7800', shell=True)
+
+
+def closeconnec():
+    global p
+    print(p.pid)
+    os.system('netstat -ano | findstr :7800')
+    # os.system('taskkill /PID '+str(p.pid)+' /F')
+    subprocess.call('taskkill /F /T /PID %i' % p.pid)
 
 
 def hellocallback():
@@ -33,6 +32,7 @@ def hellocallback():
         takephoto()
     else:
         messagebox.showerror('Error', 'Invalid Login')
+
 
 # creating instance of TK
 root = Tk()
@@ -91,14 +91,14 @@ def function3():
 
 def function6():
     root.destroy()
+    closeconnec()
 
 
 def attend():
     # os.system("python custom_server.py 1")
-    subprocess.call('start /wait python -m http.server 7800', shell=True)
-    # httpd = HTTPServer(('localhost', 7800), Serv)
-    # httpd.serve_forever()
-    # os.startfile(os.getcwd() + "attendance.html")
+    t = threading.Thread(target=serve)
+    t.start()
+    webbrowser.open('http://localhost:7800/attendance.html')
 
 
 # stting title for the window
