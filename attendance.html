@@ -37,7 +37,8 @@ width: 190px;
 <label for="dateofbirth" style="color:white;">Select Date</label>
 <input type="date" name="dateofbirth" id="dateofbirth">
 <button type="button" class="btn btn-outline-light" onclick="dob()">Submit</button>
-<button type="button" class="btn btn-outline-light">Download</button>
+<div id="download"></div>
+<!--button type="button" class="btn btn-outline-light" onclick="down()">Download</button-->
 
 
 
@@ -96,6 +97,11 @@ width: 190px;
                              tabs
                             '</tbody>' +
                             '</table>';
+                    document.getElementById("download").innerHTML = '<a href="./csv/' +
+                        fname +
+                        '.csv" download>' +
+                        '<button type="button" ' +
+                        'class="btn btn-outline-light">Download</button></a>'
                 })
                 .catch(e => {
                     console.log("Attendance not available for "+fname);

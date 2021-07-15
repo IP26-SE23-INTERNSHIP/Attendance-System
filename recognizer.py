@@ -94,15 +94,19 @@ while True:
                 myfile.touch(exist_ok=True)
                 try :
                     jsonf=open('./attendance/'+str(date.today())+'.json', 'r', encoding='utf-8')
-
                     jsonfcheck=json.load(jsonf)
-
                     if roll[xyz] not in jsonfcheck.keys():
                         jsonfcheck[roll[xyz]]=users[roll[xyz]]
                         jsonfcheck[roll[xyz]]['time'] = str(datetime.now())
                         jsonf=open('./attendance/'+str(date.today())+'.json', 'w', encoding='utf-8')
                         jsonf.write(json.dumps(jsonfcheck, indent=4))
                         jsonf.close()
+                        f1 = open('./csv/' + str(date.today()) + '.csv', 'w')
+                        print('Roll No, Name, Email, TimeStamp', file=f1)
+                        for k, v in jsonfcheck.items():
+                            print(k, jsonfcheck[k]['name'], jsonfcheck[k]['email'],
+                                  jsonfcheck[k]['time'], file=f1)
+                        f1.close()
                 except json.decoder.JSONDecodeError:
                     dct[roll[xyz]] = users[roll[xyz]]
                     dct[roll[xyz]]['time'] = str(datetime.now())
