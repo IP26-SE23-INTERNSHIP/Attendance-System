@@ -110,13 +110,13 @@ while True:
                         msg['From'] = 'samant.nimish@gmail.com'
 
                         # storing the receivers email address
-                        msg['To'] = dct[roll[xyz]]['email']
+                        msg['To'] = jsonfcheck[roll[xyz]]['email']
 
                         # storing the subject
                         msg['Subject'] = "Attendance accepted"
 
                         # string to store the body of the mail
-                        body = 'Your attendance has been marked for ' + str(dct[roll[xyz]]['time'])
+                        body = 'Your attendance has been marked for ' + str(jsonfcheck[roll[xyz]]['time'])
 
                         # attach the body with the msg instance
                         msg.attach(MIMEText(body, 'plain'))
@@ -134,7 +134,7 @@ while True:
                         text = msg.as_string()
 
                         # sending the mail
-                        s.sendmail('samant.nimish@gmail.com', dct[roll[xyz]]['email'], text)
+                        s.sendmail('samant.nimish@gmail.com', jsonfcheck[roll[xyz]]['email'], text)
 
                         # terminating the session
                         s.quit()
