@@ -12,7 +12,7 @@ global p
 
 def serve():
     global p
-    p = subprocess.Popen('start /wait python -m http.server 7800', shell=True)
+    p = subprocess.Popen('start /wait py -m http.server 7800', shell=True)
 
 
 def closeconnec():

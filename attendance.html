@@ -1,8 +1,4 @@
-
-
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-
 <style>
 [type="date"] {
 background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png) 97% 50% no-repeat ;
@@ -13,9 +9,6 @@ display: none;
 [type="date"]::-webkit-calendar-picker-indicator {
 opacity: 0;
 }
-
-
-
 /* custom styles */
 body {
 padding: 4em;
@@ -38,35 +31,7 @@ width: 190px;
 <input type="date" name="dateofbirth" id="dateofbirth">
 <button type="button" class="btn btn-outline-light" onclick="dob()">Submit</button>
 <div id="download"></div>
-<!--button type="button" class="btn btn-outline-light" onclick="down()">Download</button-->
-
-
-
-<div id="attendancetable">
-<!--table class="table table-dark" style="margin-top:40px;">
-<thead>
-<tr>
-
-<th scope="col">Roll No</th>
-<th scope="col">Name</th>
-<th scope="col">Time</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Nimish</td>
-<td>19102A0050</td>
-<td>0</td>
-</tr>
-<tr>
-<td>Nimish</td>
-<td></td>
-<td>0</td>
-</tr>
-
-</tbody>
-</table-->
-</div>
+<div id="attendancetable"></div>
 <script>
     function dob() {
         var fname = document.getElementById('dateofbirth').value;
@@ -126,8 +91,6 @@ width: 190px;
         }
     }
 </script>
-
-
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>

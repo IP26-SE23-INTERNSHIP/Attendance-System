@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Attendance-System.iml" filepath="$PROJECT_DIR$/.idea/Attendance-System.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../CSIVIT/.idea/CSIVIT.iml" filepath="$PROJECT_DIR$/../../CSIVIT/.idea/CSIVIT.iml" />
     </modules>
   </component>
 </project>

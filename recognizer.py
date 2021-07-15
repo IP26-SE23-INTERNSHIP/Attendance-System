@@ -1,13 +1,3 @@
-''''
-Real Time Face Recogition
-	==> Each face stored on dataset/ dir, should have a unique numeric integer ID as 1, 2, 3, etc
-	==> LBPH computed model (trained faces) should be on trainer/ dir
-Based on original code by Anirban Kar: https://github.com/thecodacus/Face-Recognition
-
-Developed by Marcelo Rovai - MJRoBot.org @ 21Feb18
-
-'''
-
 import cv2
 import json
 from datetime import date, datetime
@@ -15,7 +5,9 @@ from pathlib import Path
 from tkinter import *
 from tkinter import messagebox
 import pandas as pd
-import numpy as np
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 msgbox = Tk()
 msgbox.withdraw()
@@ -26,7 +18,6 @@ users = json.load(p)
 names = []
 roll=[]
 dct = {}
-
 
 
 for k, v in users.items():
@@ -112,6 +103,41 @@ while True:
                         GFG = pd.ExcelWriter('./excel/' + str(date.today()) + '.xlsx')
                         df_new.to_excel(GFG, index=False)
                         GFG.save()
+                        # instance of MIMEMultipart
+                        msg = MIMEMultipart()
+
+                        # storing the senders email address
+                        msg['From'] = 'samant.nimish@gmail.com'
+
+                        # storing the receivers email address
+                        msg['To'] = dct[roll[xyz]]['email']
+
+                        # storing the subject
+                        msg['Subject'] = "Attendance accepted"
+
+                        # string to store the body of the mail
+                        body = 'Your attendance has been marked for ' + str(dct[roll[xyz]]['time'])
+
+                        # attach the body with the msg instance
+                        msg.attach(MIMEText(body, 'plain'))
+
+                        # creates SMTP session
+                        s = smtplib.SMTP('smtp.gmail.com', 587)
+
+                        # start TLS for security
+                        s.starttls()
+
+                        # Authentication
+                        s.login('samant.nimish@gmail.com', 'wmmcumuubicxieiq')
+
+                        # Converts the Multipart msg into a string
+                        text = msg.as_string()
+
+                        # sending the mail
+                        s.sendmail('samant.nimish@gmail.com', dct[roll[xyz]]['email'], text)
+
+                        # terminating the session
+                        s.quit()
                         messagebox.showinfo('Attendance Confirmation', 'Attendace for '+jsonfcheck[roll[xyz]]['name']+' is taken')
                     else:
                         messagebox.showinfo('Attendance Confirmation', 'Attendace for '+jsonfcheck[roll[xyz]]['name']+' already taken')
@@ -130,6 +156,41 @@ while True:
                     GFG = pd.ExcelWriter('./excel/' + str(date.today()) + '.xlsx')
                     df_new.to_excel(GFG, index=False)
                     GFG.save()
+                    # instance of MIMEMultipart
+                    msg = MIMEMultipart()
+
+                    # storing the senders email address
+                    msg['From'] = 'samant.nimish@gmail.com'
+
+                    # storing the receivers email address
+                    msg['To'] = dct[roll[xyz]]['email']
+
+                    # storing the subject
+                    msg['Subject'] = "Attendance accepted"
+
+                    # string to store the body of the mail
+                    body = 'Your attendance has been marked for ' + str(dct[roll[xyz]]['time'])
+
+                    # attach the body with the msg instance
+                    msg.attach(MIMEText(body, 'plain'))
+
+                    # creates SMTP session
+                    s = smtplib.SMTP('smtp.gmail.com', 587)
+
+                    # start TLS for security
+                    s.starttls()
+
+                    # Authentication
+                    s.login('samant.nimish@gmail.com', 'wmmcumuubicxieiq')
+
+                    # Converts the Multipart msg into a string
+                    text = msg.as_string()
+
+                    # sending the mail
+                    s.sendmail('samant.nimish@gmail.com', dct[roll[xyz]]['email'], text)
+
+                    # terminating the session
+                    s.quit()
                     messagebox.showinfo('Attendance Confirmation', 'Attendace for '+dct[roll[xyz]]['name']+' is taken')
         else:
             id = "unknown"
