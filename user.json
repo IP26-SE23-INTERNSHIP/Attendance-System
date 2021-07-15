@@ -1,0 +1,26 @@
+{
+    "19102A0050": {
+        "id": 0,
+        "name": "Nimish Girish Samant",
+        "email": "nimish.samant@vit.edu.in",
+        "role": 1
+    },
+    "20102B2002": {
+        "id": 1,
+        "name": "Bhumi Sharad Avhad",
+        "email": "bhumi.avhad@vit.edu.in",
+        "role": 1
+    },
+    "19102A0033": {
+        "id": 2,
+        "name": "Heramba Prasanna Limaye",
+        "email": "heramba.limaye@vit.edu.in",
+        "role": 1
+    },
+    "19102A0030": {
+        "id": 3,
+        "name": "Shraddha Patangrao Shinde",
+        "email": "shraddha.shinde@vit.edu.in",
+        "role": 1
+    }
+}
