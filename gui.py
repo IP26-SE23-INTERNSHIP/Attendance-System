@@ -28,7 +28,7 @@ def closeconnec():
 
 
 def hellocallback():
-    if e3.get() == 'pass':
+    if e4.get() == 'pass':
         takephoto()
     else:
         messagebox.showerror('Error', 'Invalid Login')
@@ -39,10 +39,14 @@ root = Tk()
 root.configure(background="white")
 
 p = open('user.json', 'rb')
-users = json.load(p)
+try:
+    users = json.load(p)
+except:
+    users={}
+    pass
 
 def function1():
-    global f, e1, e2, e3
+    global f, e1, e2, e3, e4
     f = Tk()
 
     l1 = Label(f, text='Employee Code / Roll No : ', width=23, height=2)
@@ -51,8 +55,11 @@ def function1():
     l2 = Label(f, text='Name : ', width=23, height=2)
     e2 = Entry(f, width=40)
 
-    l3 = Label(f, text='Password : ', width=23, height=2)
-    e3 = Entry(f, width=40, show='*')
+    l3 = Label(f, text='Email id : ', width=23, height=2)
+    e3 = Entry(f, width=40)
+
+    l4 = Label(f, text='Password : ', width=23, height=2)
+    e4 = Entry(f, width=40, show='*')
 
     b = Button(f, text='Submit', width=15, height=2, command=hellocallback, bg='blue', fg='white',
                activebackground='green', activeforeground='red')
@@ -63,7 +70,9 @@ def function1():
     e2.grid(row=1, column=1)
     l3.grid(row=2, column=0)
     e3.grid(row=2, column=1)
-    b.grid(row=3, column=0)
+    l4.grid(row=3, column=0)
+    e4.grid(row=3, column=1)
+    b.grid(row=4, column=0)
 
     f.mainloop()
 
@@ -77,6 +86,7 @@ def takephoto():
     x = users.get(userid, {'id': len(users)})
     users[userid] = {'id': x['id'], \
                      'name': e2.get(), \
+                     'email': e3.get(), \
                      'role': role}
     print(x, users, sep='\n')
     f.destroy()
