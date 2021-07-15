@@ -2,14 +2,10 @@
 from tkinter import *
 from tkinter import messagebox
 import os
-from datetime import datetime
 import json
-from datetime import date
 import webbrowser
-from http.server import HTTPServer, BaseHTTPRequestHandler
 import subprocess
 import threading
-import signal
 
 global p
 

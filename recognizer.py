@@ -9,12 +9,16 @@ Developed by Marcelo Rovai - MJRoBot.org @ 21Feb18
 '''
 
 import cv2
-import numpy as np
-import os
 import json
-from datetime import date,datetime
+from datetime import date, datetime
 from pathlib import Path
+from tkinter import *
+from tkinter import messagebox
+import pandas as pd
+import numpy as np
 
+msgbox = Tk()
+msgbox.withdraw()
 
 p = open('user.json', 'r')
 users = json.load(p)
@@ -87,33 +91,46 @@ while True:
             confidence = "  {0}%".format(round(confidence))
             print(ctr)
 
-
-
             if ctr>100:
                 myfile = Path('./attendance/' + str(date.today()) + '.json')
                 myfile.touch(exist_ok=True)
                 try :
-                    jsonf=open('./attendance/'+str(date.today())+'.json', 'r', encoding='utf-8')
+                    jsonf = open('./attendance/'+str(date.today())+'.json', 'r', encoding='utf-8')
                     jsonfcheck=json.load(jsonf)
                     if roll[xyz] not in jsonfcheck.keys():
                         jsonfcheck[roll[xyz]]=users[roll[xyz]]
                         jsonfcheck[roll[xyz]]['time'] = str(datetime.now())
-                        jsonf=open('./attendance/'+str(date.today())+'.json', 'w', encoding='utf-8')
+                        jsonf = open('./attendance/'+str(date.today())+'.json', 'w', encoding='utf-8')
                         jsonf.write(json.dumps(jsonfcheck, indent=4))
                         jsonf.close()
                         f1 = open('./csv/' + str(date.today()) + '.csv', 'w')
-                        print('Roll No, Name, Email, TimeStamp', file=f1)
+                        print('Roll No,Name,Email,TimeStamp', file=f1)
                         for k, v in jsonfcheck.items():
-                            print(k, jsonfcheck[k]['name'], jsonfcheck[k]['email'],
-                                  jsonfcheck[k]['time'], file=f1)
+                            print(k, jsonfcheck[k]['name'], jsonfcheck[k]['email'], jsonfcheck[k]['time'], sep=',', file=f1)
                         f1.close()
+                        df_new = pd.read_csv('./csv/' + str(date.today()) + '.csv')
+                        GFG = pd.ExcelWriter('./excel/' + str(date.today()) + '.xlsx')
+                        df_new.to_excel(GFG, index=False)
+                        GFG.save()
+                        messagebox.showinfo('Attendance Confirmation', 'Attendace for '+jsonfcheck[roll[xyz]]['name']+' is taken')
+                    else:
+                        messagebox.showinfo('Attendance Confirmation', 'Attendace for '+jsonfcheck[roll[xyz]]['name']+' already taken')
+
                 except json.decoder.JSONDecodeError:
                     dct[roll[xyz]] = users[roll[xyz]]
                     dct[roll[xyz]]['time'] = str(datetime.now())
                     jsonf = open('./attendance/' + str(date.today()) + '.json', 'w', encoding='utf-8')
                     jsonf.write(json.dumps(dct, indent=4))
                     jsonf.close()
-
+                    f1 = open('./csv/' + str(date.today()) + '.csv', 'w')
+                    print('Roll No,Name,Email,TimeStamp', file=f1)
+                    print(roll[xyz], dct[roll[xyz]]['name'], dct[roll[xyz]]['email'], dct[roll[xyz]]['time'], sep=',', file=f1)
+                    f1.close()
+                    df_new = pd.read_csv('./csv/' + str(date.today()) + '.csv')
+                    GFG = pd.ExcelWriter('./excel/' + str(date.today()) + '.xlsx')
+                    df_new.to_excel(GFG, index=False)
+                    GFG.save()
+                    messagebox.showinfo('Attendance Confirmation', 'Attendace for '+dct[roll[xyz]]['name']+' is taken')
         else:
             id = "unknown"
             confidence = "  {0}%".format(round(confidence))
