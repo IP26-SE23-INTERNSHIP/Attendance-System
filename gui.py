@@ -2,6 +2,7 @@
 from tkinter import *
 from tkinter import messagebox
 import os
+os.system('pip install -r requirements.txt')
 import json
 import webbrowser
 import subprocess
@@ -86,13 +87,13 @@ def takephoto():
                      'role': role}
     print(x, users, sep='\n')
     f.destroy()
-    os.system("py training.py " + str(x['id']))
+    os.system("py training.pyw" + str(x['id']))
     with open('user.json', 'w', encoding='utf-8') as jsonf:
         jsonf.write(json.dumps(users, indent=4))
 
 
 def function3():
-    os.system("py recognizer.py")
+    os.system("py recognizer.pyw")
 
 
 def function6():
